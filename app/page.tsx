@@ -47,7 +47,7 @@ export default function Home() {
 
       <main className="container mx-auto px-4 relative z-10">
         {/* Hero Section */}
-        <section id="home" className="py-16 flex flex-col lg:flex-row items-start gap-12 max-w-6xl mx-auto relative min-h-[600px]">
+        <section id="home" className="py-16 flex flex-col items-center justify-center gap-12 max-w-6xl mx-auto relative min-h-[600px]">
           {/* Hand Wave - positioned at top left edge */}
           <div className="absolute -left-60 -top-10 w-200 h-226 hidden xl:block animate-[wave_2s_ease-in-out_infinite] origin-bottom-right z-0">
             <Image 
@@ -59,14 +59,14 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex-1 space-y-6 z-10 relative pt-12">
+          <div className="flex-1 space-y-6 z-10 relative text-center max-w-3xl">
             <h1 className="text-5xl font-bold text-neutral-900 leading-tight">
               I&apos;m Hai Nguyen
             </h1>
             <p className="text-2xl font-bold text-neutral-900 leading-relaxed">
               Frontend Developer and Designer. I learn and teach everything about Web Technologies and Product Design.
             </p>
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <SocialLinks />
               <Button href="#" icon={<DownloadIcon />}>
                 Download CV
