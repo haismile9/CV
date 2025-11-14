@@ -3,16 +3,14 @@ import { LinkedInIcon, GitHubIcon, TwitterIcon, InstagramIcon, YouTubeIcon, Stac
 export default function SocialLinks() {
   const socials = [
     { icon: <LinkedInIcon />, href: 'https://www.linkedin.com/in/smile9', label: 'LinkedIn' },
-    { icon: <GitHubIcon />, href: 'https://github.com', label: 'GitHub' },
-    { icon: <TwitterIcon />, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: <GitHubIcon />, href: 'https://github.com/haismile9', label: 'GitHub' },
     { icon: <InstagramIcon />, href: 'https://instagram.com', label: 'Instagram' },
-    { icon: <YouTubeIcon />, href: 'https://youtube.com', label: 'YouTube' },
-    { icon: <StackOverflowIcon />, href: 'https://stackoverflow.com', label: 'Stack Overflow' },
+    { icon: <StackOverflowIcon />, href: 'https://stackoverflow.com/users/27633417/nguy%e1%bb%85n-h%e1%ba%a3i', label: 'Stack Overflow' },
   ];
 
   return (
     <div className="flex gap-2">
-      {socials.map((social) => (
+      {socials.map((social) => ( 
         <a
           key={social.label}
           href={social.href}
