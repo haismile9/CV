@@ -41,9 +41,15 @@ export default function ContactForm() {
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_596zz05';
 
       console.log('Sending email with:', { serviceId, templateId });
+      console.log('Template data:', {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        time: timeString,
+      });
 
       // Gửi email qua EmailJS
-      await emailjs.send(
+      const response = await emailjs.send(
         serviceId,
         templateId,
         {
@@ -54,11 +60,14 @@ export default function ContactForm() {
         }
       );
 
+      console.log('✅ Success:', response);
       alert('✅ Message sent successfully! I will get back to you soon.');
       setFormData({ name: '', email: '', message: '' }); // Reset form
       
-    } catch (error) {
-      console.error('❌ Error:', error);
+    } catch (error: any) {
+      console.error('❌ Full Error:', error);
+      console.error('❌ Error text:', error?.text);
+      console.error('❌ Error status:', error?.status);
       alert('❌ Failed to send message. Please try again or email me directly.');
     } finally {
       setIsSubmitting(false);
