@@ -3,6 +3,7 @@
 import { useState, FormEvent } from 'react';
 import Button from './Button';
 import { SendIcon } from './Icons';
+import emailjs from '@emailjs/browser';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -10,11 +11,47 @@ export default function ContactForm() {
     email: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    
+    try {
+      // Tạo timestamp
+      const now = new Date();
+      const timeString = now.toLocaleString('en-US', {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+
+      // Gửi email qua EmailJS
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          time: timeString, // Thêm thời gian
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      alert('✅ Message sent successfully! I will get back to you soon.');
+      setFormData({ name: '', email: '', message: '' }); // Reset form
+      
+    } catch (error) {
+      console.error('❌ Error:', error);
+      alert('❌ Failed to send message. Please try again or email me directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -74,7 +111,9 @@ export default function ContactForm() {
       </div>
 
       <div className="flex justify-end">
-        <Button icon={<SendIcon />}>Send</Button>
+        <Button icon={<SendIcon />}>
+          {isSubmitting ? 'Sending...' : 'Send'}
+        </Button>
       </div>
     </form>
   );
