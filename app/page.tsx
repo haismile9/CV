@@ -178,7 +178,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="py-12 text-center border-t border-neutral-100 mt-20">
           <p className="text-neutral-500">
-            Made with ❤️ by Freddy Montes
+            Made with ❤️ by Smiley Hai Nguyen - © 2025 All rights reserved.
           </p>
         </footer>
       </main>
