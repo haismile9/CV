@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import Button from './Button';
 import { SendIcon } from './Icons';
 import emailjs from '@emailjs/browser';
@@ -12,6 +12,14 @@ export default function ContactForm() {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    // Initialize EmailJS with public key
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -39,8 +47,7 @@ export default function ContactForm() {
           from_email: formData.email,
           message: formData.message,
           time: timeString, // Thêm thời gian
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        }
       );
 
       alert('✅ Message sent successfully! I will get back to you soon.');
