@@ -12,6 +12,7 @@ export default function ContactForm() {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     // Initialize EmailJS with public key
@@ -37,7 +38,7 @@ export default function ContactForm() {
         hour12: true
       });
 
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_puu1wa8';
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_puu1ws8';
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_596zz05';
 
       console.log('Sending email with:', { serviceId, templateId });
@@ -61,8 +62,13 @@ export default function ContactForm() {
       );
 
       console.log('✅ Success:', response);
-      alert('✅ Message sent successfully! I will get back to you soon.');
+      setShowSuccess(true);
       setFormData({ name: '', email: '', message: '' }); // Reset form
+      
+      // Ẩn thông báo sau 5 giây
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
       
     } catch (error: any) {
       console.error('❌ Full Error:', error);
@@ -75,7 +81,33 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-xl w-full">
+    <>
+      {/* Success Notification */}
+      {showSuccess && (
+        <div className="fixed top-8 right-8 bg-white border-3 border-green-300 rounded-lg shadow-2xl p-6 max-w-md animate-slideIn z-50">
+          <div className="flex items-start gap-4">
+            <div className="flex-shrink-0 w-12 h-12 bg-green-400 rounded-full flex items-center justify-center">
+              <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-bold text-neutral-900 mb-1">Message Sent! ✨</h3>
+              <p className="text-neutral-500">Thank you for reaching out! I&apos;ll get back to you soon.</p>
+            </div>
+            <button 
+              onClick={() => setShowSuccess(false)}
+              className="flex-shrink-0 text-neutral-500 hover:text-neutral-900 transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-6 max-w-xl w-full">
       <div className="relative">
         <input
           type="text"
@@ -136,5 +168,6 @@ export default function ContactForm() {
         </Button>
       </div>
     </form>
+    </>
   );
 }
