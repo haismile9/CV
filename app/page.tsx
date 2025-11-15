@@ -117,7 +117,7 @@ export default function Home() {
                 Working full time in Angular, Typescript and SCSS, leading the team for revamping DotCMS administration system.
               </p>
               <p className="text-2xl text-brand-500">
-                Code, Design, Learn and Teach.
+                Full-stack Developer
               </p>
               <p className="text-neutral-900 leading-relaxed">
                 Frontend is my true passion and I really enjoy the whole process of creating UIs, from the first brainstorming, wireframes, mockups, design, all the way until the final product.
