@@ -15,10 +15,9 @@ export default function ContactForm() {
 
   useEffect(() => {
     // Initialize EmailJS with public key
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    if (publicKey) {
-      emailjs.init(publicKey);
-    }
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'dZwlfVw6IdSnmIvJu';
+    emailjs.init(publicKey);
+    console.log('EmailJS initialized');
   }, []);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -38,10 +37,15 @@ export default function ContactForm() {
         hour12: true
       });
 
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_puu1wa8';
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_596zz05';
+
+      console.log('Sending email with:', { serviceId, templateId });
+
       // Gửi email qua EmailJS
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        serviceId,
+        templateId,
         {
           from_name: formData.name,
           from_email: formData.email,
