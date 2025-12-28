@@ -4,7 +4,7 @@ export default function SocialLinks() {
   const socials = [
     { icon: <LinkedInIcon />, href: 'https://www.linkedin.com/in/smile9', label: 'LinkedIn' },
     { icon: <GitHubIcon />, href: 'https://github.com/haismile9', label: 'GitHub' },
-    { icon: <InstagramIcon />, href: 'https://instagram.com', label: 'Instagram' },
+    { icon: <InstagramIcon />, href: 'https://instagram.com/kai_elims9/', label: 'Instagram' },
     { icon: <StackOverflowIcon />, href: 'https://stackoverflow.com/users/27633417/nguy%e1%bb%85n-h%e1%ba%a3i', label: 'Stack Overflow' },
   ];
 

@@ -11,20 +11,20 @@ import Image from 'next/image';
 export default function Home() {
   const projects = [
     {
-      title: 'eCommerce Mobile App',
+      title: 'Manage IoMT Devices',
       description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Git', 'Vitejs'],
-      imageUrl: '/images/project1.png',
+      technologies: ['ExpressJS','React','Redis','ShadcnUI','Redux','HTML', 'CSS', 'JavaScript','TypeScript', 'Git', 'Vitejs'],
+      imageUrl: '/images/project/IoMT.png',
       codeUrl: '#',
       demoUrl: '#',
     },
     {
-      title: 'Dataset Landing Page',
+      title: 'My Blog Website',
       description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologies: ['HTML', 'CSS'],
-      imageUrl: '/images/project2.png',
+      technologies: ['Nextjs','HTML', 'CSS'],
+      imageUrl: '/images/project/MyBlog.png',
       codeUrl: '#',
-      demoUrl: '#',
+      demoUrl: 'https://haismile.dev/',
     },
   ];
 
