@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function GraduationInvitation() {
   const eventDetails = {
-    date: 'Thứ Bảy, 15 Tháng 1, 2026',
+    date: 'Thứ Bảy, 17 Tháng 1, 2026',
     time: '11:00 Sáng',
     location: 'Hội trường Đại học Văn Lang',
     address: '69/68 Đ. Đặng Thuỳ Trâm, Phường 5, Gò Vấp, Thành phố Hồ Chí Minh 70000, Việt Nam'
